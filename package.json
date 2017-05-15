@@ -1,0 +1,31 @@
+{
+  "name": "tlmc-serve",
+  "version": "0.0.0",
+  "description": "Touhou Lossless Music Collection (server)",
+  "author": {
+    "name": "Markus Tran",
+    "email": "thebluepillow@gmail.com",
+    "url": "http://pillowfication.com"
+  },
+  "homepage": "https://github.com/pillowfication/tlmc-serve",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pillowfication/tlmc-serve.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pillowfication/tlmc-serve/issues"
+  },
+  "main": "src/tlmc-serve.js",
+  "scripts": {},
+  "dependencies": {
+    "csv-parse": "^1.2.0",
+    "csv-stringify": "^1.0.4",
+    "cue-parser": "git://github.com/pillowfication/cue-parser.git#master",
+    "ls-serialize": "^1.0.1",
+    "sanitize-filename": "git://github.com/pillowfication/node-sanitize-filename.git#tlmc"
+  },
+  "devDependencies": {
+    "eslint": "^3.18.0",
+    "eslint-config-pf": "1.0.7"
+  }
+}
