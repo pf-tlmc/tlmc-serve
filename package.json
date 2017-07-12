@@ -15,17 +15,17 @@
   "bugs": {
     "url": "https://github.com/pillowfication/tlmc-serve/issues"
   },
-  "main": "src/tlmc-serve.js",
-  "scripts": {},
+  "main": "index.js",
+  "scripts": {
+    "test": "standard"
+  },
   "dependencies": {
     "csv-parse": "^1.2.0",
     "csv-stringify": "^1.0.4",
-    "cue-parser": "git://github.com/pillowfication/cue-parser.git#master",
-    "ls-serialize": "^1.0.1",
-    "sanitize-filename": "git://github.com/pillowfication/node-sanitize-filename.git#tlmc"
+    "cue-parser": "git://github.com/pillowfication/cue-parser.git#tlmc",
+    "ls-serialize": "^1.0.2"
   },
   "devDependencies": {
-    "eslint": "^3.18.0",
-    "eslint-config-pf": "1.0.7"
+    "standard": "10.0.2"
   }
 }
