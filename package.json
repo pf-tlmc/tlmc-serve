@@ -20,9 +20,11 @@
     "test": "standard"
   },
   "dependencies": {
+    "compression": "^1.7.0",
     "csv-parse": "^1.2.0",
     "csv-stringify": "^1.0.4",
     "cue-parser": "git://github.com/pillowfication/cue-parser.git#tlmc",
+    "express": "^4.15.3",
     "ls-serialize": "^1.0.2"
   },
   "devDependencies": {
