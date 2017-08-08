@@ -70,6 +70,14 @@ const CUE_CACHE_PATH = path.join(__dirname, '_cue.cache')
 // Create server
 const app = express()
 
+app.use((req, res, next) => {
+  if (req.ip !== '138.197.197.88') {
+    res.sendStatus(401)
+  } else {
+    next()
+  }
+})
+
 app.use(compression({ level: 9 }))
 app.use('/tlmc', express.static(TLMC_PATH))
 app.get('/ls', (req, res) => res.sendFile(LS_CACHE_PATH))
