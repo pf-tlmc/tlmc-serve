@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
@@ -72,10 +71,9 @@ const app = express()
 
 app.use((req, res, next) => {
   if (req.ip !== '138.197.197.88') {
-    res.sendStatus(401)
-  } else {
-    next()
+    return res.sendStatus(401)
   }
+  next()
 })
 
 app.use(compression({ level: 9 }))
