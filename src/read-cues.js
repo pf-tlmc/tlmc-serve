@@ -7,10 +7,11 @@ const { File, Directory } = require('ls-serialize')
  * implementation just for the filenames included in the TLMC
  */
 function sanitizeFilename (filename) {
-  return filename.split('').map(char => {
-    const replacement = SANITIZE_MAP[char]
-    return replacement === undefined ? char : replacement
-  }).join('')
+  let sanitized = ''
+  for (const char of filename) {
+    sanitized += SANITIZE_MAP[char] === undefined ? char : SANITIZE_MAP[char]
+  }
+  return sanitized
 }
 
 const SANITIZE_MAP = {
@@ -25,7 +26,7 @@ const SANITIZE_MAP = {
   '\t': '_'
 }
 
-module.exports = function readCues (root, rootPath) {
+function readCues (root, rootPath) {
   const songs = []
 
   function _readCues (currFile, shortPath, shortDir) {
@@ -50,7 +51,7 @@ module.exports = function readCues (root, rootPath) {
       }
     } else if (currFile instanceof Directory) {
       Array.from(currFile.files).forEach((file, index) => {
-        _readCues(file, path.join(shortPath, `${index}`), shortPath)
+        _readCues(file, path.join(shortPath, String(index)), shortPath)
       })
     }
   }
@@ -58,3 +59,5 @@ module.exports = function readCues (root, rootPath) {
   _readCues(root, '', '')
   return songs
 }
+
+module.exports = readCues

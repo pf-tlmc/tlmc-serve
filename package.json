@@ -20,14 +20,14 @@
     "test": "node_modules/standard/bin/cmd.js"
   },
   "dependencies": {
-    "compression": "^1.7.0",
-    "csv-parse": "^1.2.0",
-    "csv-stringify": "^1.0.4",
+    "compression": "^1.7.1",
+    "csv-parse": "^2.0.0",
+    "csv-stringify": "^2.0.0",
     "cue-parser": "git://github.com/pillowfication/cue-parser.git#tlmc",
-    "express": "^4.15.3",
-    "ls-serialize": "^1.0.2"
+    "express": "^4.16.2",
+    "ls-serialize": "^1.0.3"
   },
   "devDependencies": {
-    "standard": "10.0.2"
+    "standard": "^10.0.3"
   }
 }
