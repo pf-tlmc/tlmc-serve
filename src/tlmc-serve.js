@@ -2,27 +2,38 @@ const path = require('path')
 const express = require('express')
 const compression = require('compression')
 
-const TLMC_PATH = process.argv[3] || process.env.TLMC_PATH || '/mnt/TouhouBox/tlmc'
-const LS_CACHE_PATH = path.join(__dirname, 'cache', 'ls.cache')
-const CUE_CACHE_PATH = path.join(__dirname, 'cache', 'cue.cache')
+const PATHS = {
+  tlmc: process.env.TLMC_PATH,
+  lsCache: path.resolve(__dirname, './cache/ls.cache'),
+  cueCache: path.resolve(__dirname, './cache/cue.cache')
+}
 
-require('./ls-cache')(TLMC_PATH, LS_CACHE_PATH)
-require('./cue-cache')(TLMC_PATH, LS_CACHE_PATH, CUE_CACHE_PATH)
-require('./check-files')(TLMC_PATH, LS_CACHE_PATH, CUE_CACHE_PATH)
+for (const key in PATHS) {
+  if (!PATHS[key]) {
+    console.error(`Path \`${key}\` was not specified.`)
+    process.exit(1)
+  }
+}
+
+require('./ls-cache')(PATHS)
+require('./cue-cache')(PATHS)
+require('./check-files')(PATHS)
 
 // Create server
 const app = express()
 
-app.use((req, res, next) => {
-  if (req.ip !== '138.197.197.88') {
-    return res.sendStatus(401)
+app.use((request, response, next) => {
+  if (process.env.NODE_ENV === 'production' && request.ip !== '138.197.197.88') {
+    return response.sendStatus(401)
   }
   next()
 })
 
 app.use(compression({ level: 9 }))
-app.use('/tlmc', express.static(TLMC_PATH))
-app.get('/ls', (_, response) => response.sendFile(LS_CACHE_PATH))
-app.get('/cue', (_, response) => response.sendFile(CUE_CACHE_PATH))
+app.use('/tlmc', express.static(PATHS.tlmc))
+app.get('/ls', (request, response) => { response.sendFile(PATHS.lsCache) })
+app.get('/cue', (request, response) => { response.sendFile(PATHS.cueCache) })
+
+app.use((request, response) => { response.sendStatus(404) })
 
 module.exports = app

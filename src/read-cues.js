@@ -4,7 +4,7 @@ const { File, Directory } = require('ls-serialize')
 
 /**
  * This may not be a full sanitization, but it is intended to mock foobar2000's
- * implementation just for the filenames included in the TLMC
+ * implementation just for the filenames included in the TLMC.
  */
 function sanitizeFilename (filename) {
   let sanitized = ''

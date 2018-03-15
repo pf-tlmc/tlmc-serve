@@ -1,14 +1,14 @@
-const { accessSync, writeFileSync } = require('fs')
+const fs = require('fs')
 const { serialize } = require('ls-serialize')
 
-function lsCache (tlmcPath, lsCachePath) {
+function lsCache (paths) {
   try {
-    accessSync(lsCachePath)
-    console.log(`ls-cache: Existing cache found at ${lsCachePath}`)
-  } catch (_) {
+    fs.accessSync(paths.lsCache)
+    console.log(`ls-cache: Existing cache found at ${paths.lsCache}`)
+  } catch (error) {
     console.log('ls-cache: Creating directory structure...')
-    writeFileSync(lsCachePath, serialize(tlmcPath))
-    console.log(`ls-cache: Cache created at ${lsCachePath}`)
+    fs.writeFileSync(paths.lsCache, serialize(paths.tlmc))
+    console.log(`ls-cache: Cache created at ${paths.lsCache}`)
   }
 }
 
