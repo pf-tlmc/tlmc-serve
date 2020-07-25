@@ -9,7 +9,7 @@ function createThumbnail (path) {
       const size = Math.min(isWide ? width >> 1 : width, height)
       return img
         .extract({
-          left: ((isWide ? width * 2 : width) - size) >> 1,
+          left: ((isWide ? width * 1.5 : width) - size) >> 1,
           top: (height - size) >> 1,
           width: size,
           height: size
