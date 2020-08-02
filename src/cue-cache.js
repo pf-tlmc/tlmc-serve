@@ -24,8 +24,9 @@ function cueCache (paths) {
 
     console.log('cue-cache: Writing to file...')
     fs.writeFileSync(paths.cueCache, cueSheets.map((cueFile) =>
+      `${cueFile.path}\n` +
       fs.readFileSync(path.join(paths.tlmc, cueFile.path)).toString()
-    ).join('\n===\n'))
+    ).join('===\n'))
 
     console.log(`cue-cache: Cache created at ${paths.cueCache}`)
   }
