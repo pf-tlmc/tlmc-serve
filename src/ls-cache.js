@@ -8,6 +8,7 @@ function lsCache (paths) {
   } catch (error) {
     console.log('ls-cache: Creating directory structure...')
     fs.writeFileSync(paths.lsCache, serialize(paths.tlmc))
+
     console.log(`ls-cache: Cache created at ${paths.lsCache}`)
   }
 }

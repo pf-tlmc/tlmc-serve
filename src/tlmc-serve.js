@@ -7,11 +7,13 @@ const createThumbnail = require('./create-thumbnail')
 
 const PATHS = {
   tlmc: process.env.TLMC_PATH || 'F:\\Touhou lossless music collection',
-  lsCache: path.resolve(__dirname, '../cache/ls.cache')
+  lsCache: path.resolve(__dirname, '../.cache/ls.cache'),
+  cueCache: path.resolve(__dirname, '../.cache/cue.cache')
 }
 const IMAGE_REGEX = /^\.(jpe?g|png|bmp|tiff|gif)$/i
 
 require('./ls-cache')(PATHS)
+require('./cue-cache')(PATHS)
 
 // Create server
 const app = express()
