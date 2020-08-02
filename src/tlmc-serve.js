@@ -1,3 +1,4 @@
+const fs = require('fs')
 const path = require('path')
 const express = require('express')
 const serveIndex = require('serve-index')
@@ -12,6 +13,9 @@ const PATHS = {
 }
 const IMAGE_REGEX = /^\.(jpe?g|png|bmp|tiff|gif)$/i
 
+if (!fs.existsSync(path.resolve(__dirname, '../.cache'))) {
+  fs.mkdirSync(path.resolve(__dirname, '../.cache'))
+}
 require('./ls-cache')(PATHS)
 require('./cue-cache')(PATHS)
 
