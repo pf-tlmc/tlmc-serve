@@ -41,7 +41,7 @@ app.use('/tlmc/**', async (req, res, next) => {
 
 app.use('/tlmc',
   express.static(PATHS.tlmc, { dotfiles: 'allow' }),
-  serveIndex(PATHS.tlmc, { icons: true })
+  serveIndex(PATHS.tlmc, { icons: true, hidden: true })
 )
 
 app.get('/ls', (req, res) => { res.sendFile(PATHS.lsCache) })
